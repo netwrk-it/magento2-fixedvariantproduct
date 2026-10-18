@@ -59,3 +59,7 @@ productpagina (teller, extra-optie, validatie, mobiel), winkelwagen, order plaat
 Aandachtspunten:
 * De frontend is gebouwd voor Luma en daarvan afgeleide thema's. Voor Hyvä is een aparte template/Alpine-variant nodig.
 * Na het toevoegen kan de klant aantallen in de winkelwagen nog los aanpassen, net als bij een grouped product.
+
+## License
+
+[Netwrk Active Customer Use License](LICENSE) © Netwrk. Gebruiksrecht alleen voor actieve klanten van Netwrk.
