@@ -1,0 +1,36 @@
+{
+    "netwrk_fixed_variant_group": {
+        "column": {
+            "group_id": true,
+            "parent_id": true,
+            "title": true,
+            "qty": true,
+            "is_extra": true,
+            "position": true
+        },
+        "index": {
+            "NETWRK_FIXED_VARIANT_GROUP_PARENT_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "NETWRK_FIXED_VARIANT_GROUP_PARENT_ID_CAT_PRD_ENTT_ENTT_ID": true
+        }
+    },
+    "netwrk_fixed_variant_item": {
+        "column": {
+            "item_id": true,
+            "group_id": true,
+            "product_id": true,
+            "position": true
+        },
+        "index": {
+            "NETWRK_FIXED_VARIANT_ITEM_PRODUCT_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_902152F2398EBEC5AF1A0072C5DF257F": true,
+            "NETWRK_FIXED_VARIANT_ITEM_PRD_ID_CAT_PRD_ENTT_ENTT_ID": true,
+            "NETWRK_FIXED_VARIANT_ITEM_GROUP_ID_PRODUCT_ID": true
+        }
+    }
+}

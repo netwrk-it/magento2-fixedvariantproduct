@@ -1,0 +1,20 @@
+{
+    "name": "netwrk/magento2-fixedvariantproduct",
+    "description": "Netwrk Fixed Variant Product (standaard \"Starter pakket\"): samenstelbaar producttype (bv. patroon + materialen) waarbij de klant per groep zelf kiest.",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "version": "1.0.0",
+    "require": {
+        "php": "~8.1.0||~8.2.0||~8.3.0||~8.4.0",
+        "magento/framework": "*",
+        "magento/module-catalog": "*",
+        "magento/module-checkout": "*",
+        "magento/module-quote": "*",
+        "magento/module-ui": "*",
+        "magento/module-backend": "*"
+    },
+    "autoload": {
+        "files": ["registration.php"],
+        "psr-4": {"Netwrk\\FixedVariantProduct\\": ""}
+    }
+}

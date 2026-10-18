@@ -1,0 +1,26 @@
+<?php
+/**
+ * "Vanaf" price of a starter package
+ *
+ * @var \Magento\Catalog\Pricing\Render\FinalPriceBox $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$finalPrice = $block->getPriceType(\Magento\Catalog\Pricing\Price\FinalPrice::PRICE_CODE);
+$amount = $finalPrice->getAmount();
+$label = \Magento\Framework\App\ObjectManager::getInstance()
+    ->get(\Netwrk\FixedVariantProduct\Model\Config::class)
+    ->getPriceLabel();
+?>
+<?php if ($amount->getValue() > 0): ?>
+    <p class="minimal-price">
+        <?php if ($label): ?>
+            <span class="price-label"><?= $escaper->escapeHtml($label) ?></span>
+        <?php endif; ?>
+        <?= /* @noEscape */ $block->renderAmount($amount, [
+            'price_id' => $block->getPriceId('product-price-'),
+            'price_type' => 'finalPrice',
+            'include_container' => true,
+            'schema' => $block->getZone() === \Magento\Framework\Pricing\Render::ZONE_ITEM_VIEW,
+        ]) ?>
+    </p>
+<?php endif; ?>

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Netwrk_FixedVariantProduct::css/fixed-variant.css"/>
+    </head>
+    <body>
+        <attribute name="class" value="page-product-fixed-variant"/>
+        <referenceContainer name="product.info.form.content">
+            <block class="Netwrk\FixedVariantProduct\Block\Product\View\Selector" name="product.info.fixed_variant" before="product.info.addtocart" template="Netwrk_FixedVariantProduct::product/view/selector.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

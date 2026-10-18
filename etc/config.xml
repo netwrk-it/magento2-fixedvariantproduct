@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <netwrk_fixed_variant>
+            <general>
+                <type_label>Starter pakket</type_label>
+                <extra_label>Extra materiaal voor beginners bijbestellen</extra_label>
+                <extra_note>Handig als je net begint: bestel wat extra voor als er iets misgaat.</extra_note>
+                <price_label>Vanaf</price_label>
+            </general>
+        </netwrk_fixed_variant>
+    </default>
+</config>

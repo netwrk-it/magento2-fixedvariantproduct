@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Netwrk_FixedVariantProduct::netwrk" title="Netwrk" translate="title" module="Netwrk_FixedVariantProduct" sortOrder="60" parent="Magento_Backend::content" resource="Netwrk_FixedVariantProduct::packages"/>
+        <add id="Netwrk_FixedVariantProduct::packages" title="Starter pakketten" translate="title" module="Netwrk_FixedVariantProduct" sortOrder="10" parent="Netwrk_FixedVariantProduct::netwrk" action="netwrk_fixedvariant/package/index" resource="Netwrk_FixedVariantProduct::packages"/>
+        <add id="Netwrk_FixedVariantProduct::config" title="Instellingen" translate="title" module="Netwrk_FixedVariantProduct" sortOrder="20" parent="Netwrk_FixedVariantProduct::netwrk" action="adminhtml/system_config/edit/section/netwrk_fixed_variant" resource="Netwrk_FixedVariantProduct::config"/>
+    </menu>
+</config>

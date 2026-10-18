@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="netwrk_fixed_variant_group" resource="default" engine="innodb" comment="Starter package groups">
+        <column xsi:type="int" name="group_id" unsigned="true" nullable="false" identity="true" comment="Group ID"/>
+        <column xsi:type="int" name="parent_id" unsigned="true" nullable="false" identity="false" comment="Starter package product entity ID"/>
+        <column xsi:type="varchar" name="title" nullable="false" length="255" comment="Title"/>
+        <column xsi:type="decimal" name="qty" scale="4" precision="12" unsigned="true" nullable="false" default="1" comment="Required total qty (extra group: maximum)"/>
+        <column xsi:type="smallint" name="is_extra" unsigned="true" nullable="false" default="0" comment="Optional extra group (beginners)"/>
+        <column xsi:type="int" name="position" unsigned="true" nullable="false" default="0" comment="Position"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="group_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="NETWRK_FIXED_VARIANT_GROUP_PARENT_ID_CAT_PRD_ENTT_ENTT_ID" table="netwrk_fixed_variant_group" column="parent_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+        <index referenceId="NETWRK_FIXED_VARIANT_GROUP_PARENT_ID" indexType="btree">
+            <column name="parent_id"/>
+        </index>
+    </table>
+    <table name="netwrk_fixed_variant_item" resource="default" engine="innodb" comment="Starter package selectable products">
+        <column xsi:type="int" name="item_id" unsigned="true" nullable="false" identity="true" comment="Item ID"/>
+        <column xsi:type="int" name="group_id" unsigned="true" nullable="false" identity="false" comment="Group ID"/>
+        <column xsi:type="int" name="product_id" unsigned="true" nullable="false" identity="false" comment="Child product entity ID"/>
+        <column xsi:type="int" name="position" unsigned="true" nullable="false" default="0" comment="Position"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="item_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="NETWRK_FIXED_VARIANT_ITEM_GROUP_ID_NETWRK_FIXED_VARIANT_GROUP_GROUP_ID" table="netwrk_fixed_variant_item" column="group_id" referenceTable="netwrk_fixed_variant_group" referenceColumn="group_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="NETWRK_FIXED_VARIANT_ITEM_PRD_ID_CAT_PRD_ENTT_ENTT_ID" table="netwrk_fixed_variant_item" column="product_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="unique" referenceId="NETWRK_FIXED_VARIANT_ITEM_GROUP_ID_PRODUCT_ID">
+            <column name="group_id"/>
+            <column name="product_id"/>
+        </constraint>
+        <index referenceId="NETWRK_FIXED_VARIANT_ITEM_PRODUCT_ID" indexType="btree">
+            <column name="product_id"/>
+        </index>
+    </table>
+</schema>

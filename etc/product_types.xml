@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Catalog:etc/product_types.xsd">
+    <!-- The label shown in the admin is overridable via Stores > Configuration > Netwrk > Starter pakket -->
+    <type name="fixed_variant" label="Starter pakket" modelInstance="Netwrk\FixedVariantProduct\Model\Product\Type\FixedVariant" composite="true" isQty="false" indexPriority="60" sortOrder="35">
+        <priceModel instance="Netwrk\FixedVariantProduct\Model\Product\Type\FixedVariant\Price"/>
+        <indexerModel instance="Netwrk\FixedVariantProduct\Model\Indexer\Price"/>
+        <customAttributes>
+            <attribute name="is_real_product" value="false"/>
+            <attribute name="refundable" value="true"/>
+            <attribute name="taxable" value="false"/>
+            <attribute name="is_product_set" value="false"/>
+        </customAttributes>
+    </type>
+</config>

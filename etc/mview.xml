@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Mview/etc/mview.xsd">
+    <!-- Reindex the "vanaf" price of a starter package when its composition changes (Update by Schedule) -->
+    <view id="catalog_product_price" class="Magento\Catalog\Model\Indexer\Product\Price" group="indexer">
+        <subscriptions>
+            <table name="netwrk_fixed_variant_group" entity_column="parent_id"/>
+        </subscriptions>
+    </view>
+</config>

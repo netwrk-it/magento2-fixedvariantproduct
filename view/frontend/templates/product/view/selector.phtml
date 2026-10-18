@@ -1,0 +1,102 @@
+<?php
+/**
+ * Starter package composer on the product page
+ *
+ * @var \Netwrk\FixedVariantProduct\Block\Product\View\Selector $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$groups = $block->getGroups();
+$config = $block->getModuleConfig();
+$mandatory = array_filter($groups, static fn($g) => !$g['is_extra']);
+$extras = array_filter($groups, static fn($g) => $g['is_extra']);
+$renderGroup = static function (array $group) use ($block, $escaper): string {
+    ob_start(); ?>
+    <fieldset class="netwrk-starter-group" data-role="starter-group"
+              data-group-id="<?= (int)$group['id'] ?>"
+              data-required="<?= $escaper->escapeHtmlAttr($block->formatQty($group['qty'])) ?>"
+              data-extra="<?= $group['is_extra'] ? '1' : '0' ?>">
+        <legend class="netwrk-starter-group__title">
+            <span><?= $escaper->escapeHtml($group['title']) ?></span>
+            <span class="netwrk-starter-group__counter" data-role="counter" aria-live="polite">
+                <span data-role="chosen">0</span> / <?= $escaper->escapeHtml($block->formatQty($group['qty'])) ?>
+                <?= $group['is_extra']
+                    ? $escaper->escapeHtml(__('max.'))
+                    : $escaper->escapeHtml(__('chosen')) ?>
+            </span>
+        </legend>
+        <ul class="netwrk-starter-group__items">
+            <?php foreach ($group['items'] as $item): ?>
+                <li class="netwrk-starter-item<?= $item['salable'] ? '' : ' is-unavailable' ?>" data-role="starter-item"
+                    data-price="<?= $escaper->escapeHtmlAttr((string)$item['price']) ?>">
+                    <img class="netwrk-starter-item__image" src="<?= $escaper->escapeUrl($item['image']) ?>"
+                         alt="<?= $escaper->escapeHtmlAttr($item['name']) ?>" loading="lazy" width="64" height="64"/>
+                    <span class="netwrk-starter-item__info">
+                        <span class="netwrk-starter-item__name"><?= $escaper->escapeHtml($item['name']) ?></span>
+                        <span class="netwrk-starter-item__price">
+                            <span data-role="item-price"></span>
+                        </span>
+                        <?php if (!$item['salable']): ?>
+                            <span class="netwrk-starter-item__stock"><?= $escaper->escapeHtml(__('Out of stock')) ?></span>
+                        <?php endif; ?>
+                    </span>
+                    <span class="netwrk-starter-item__qty control">
+                        <button type="button" class="netwrk-starter-step" data-role="minus"
+                                aria-label="<?= $escaper->escapeHtmlAttr(__('Less %1', $item['name'])) ?>"
+                            <?= $item['salable'] ? '' : 'disabled' ?>>&minus;</button>
+                        <input type="number" class="input-text qty" min="0" step="1" inputmode="numeric"
+                               name="fixed_variant[<?= (int)$group['id'] ?>][<?= (int)$item['id'] ?>]"
+                               value="<?= $escaper->escapeHtmlAttr($block->formatQty($item['qty'])) ?>"
+                               aria-label="<?= $escaper->escapeHtmlAttr(__('Quantity %1', $item['name'])) ?>"
+                               data-role="qty" <?= $item['salable'] ? '' : 'disabled' ?>/>
+                        <button type="button" class="netwrk-starter-step" data-role="plus"
+                                aria-label="<?= $escaper->escapeHtmlAttr(__('More %1', $item['name'])) ?>"
+                            <?= $item['salable'] ? '' : 'disabled' ?>>+</button>
+                    </span>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+        <div class="netwrk-starter-group__error" data-role="group-error">
+            <?php /* Validated as a whole group; the error is placed right after this field */ ?>
+            <input type="text" class="netwrk-starter-group__validator" data-role="group-validator"
+                   name="fixed_variant_validate[<?= (int)$group['id'] ?>]" value="" readonly tabindex="-1"
+                   aria-hidden="true" data-validate='{"netwrk-starter-group":true}'/>
+        </div>
+    </fieldset>
+    <?php return (string)ob_get_clean();
+};
+?>
+<?php if ($groups): ?>
+<div class="netwrk-starter" data-mage-init='{"Netwrk_FixedVariantProduct/js/fixed-variant": <?= /* @noEscape */ $block->getJsonConfig() ?>}'>
+    <p class="netwrk-starter__intro">
+        <?= $escaper->escapeHtml(__('Compose your own set: choose the colours you like for each part.')) ?>
+    </p>
+
+    <?php foreach ($mandatory as $group): ?>
+        <?= /* @noEscape */ $renderGroup($group) ?>
+    <?php endforeach; ?>
+
+    <?php if ($extras): ?>
+        <div class="netwrk-starter-extra">
+            <div class="field choice">
+                <input type="checkbox" class="checkbox" id="netwrk-starter-extra-toggle" data-role="extra-toggle"/>
+                <label class="label" for="netwrk-starter-extra-toggle">
+                    <span><?= $escaper->escapeHtml($config->getExtraLabel()) ?></span>
+                </label>
+            </div>
+            <?php if ($config->getExtraNote()): ?>
+                <p class="netwrk-starter-extra__note"><?= $escaper->escapeHtml($config->getExtraNote()) ?></p>
+            <?php endif; ?>
+            <div class="netwrk-starter-extra__groups" data-role="extra-groups" hidden>
+                <?php foreach ($extras as $group): ?>
+                    <?= /* @noEscape */ $renderGroup($group) ?>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    <?php endif; ?>
+
+    <div class="netwrk-starter__total">
+        <span><?= $escaper->escapeHtml(__('Price per set')) ?>:</span>
+        <strong data-role="total">-</strong>
+    </div>
+</div>
+<?php endif; ?>

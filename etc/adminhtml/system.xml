@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="netwrk" translate="label" sortOrder="150">
+            <label>Netwrk</label>
+        </tab>
+        <section id="netwrk_fixed_variant" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Starter pakket</label>
+            <tab>netwrk</tab>
+            <resource>Netwrk_FixedVariantProduct::config</resource>
+            <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Algemeen</label>
+                <field id="type_label" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Naam producttype</label>
+                    <comment>Naam van het producttype in de backend (bv. bij "Product toevoegen"). Standaard: Starter pakket. Ververs de cache na wijzigen.</comment>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="extra_label" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Tekst optie extra materiaal (frontend)</label>
+                </field>
+                <field id="extra_note" translate="label" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Toelichting extra materiaal (frontend)</label>
+                </field>
+                <field id="price_label" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Prijslabel in overzichten</label>
+                    <comment>Bijvoorbeeld "Vanaf". De getoonde prijs is de goedkoopst mogelijke samenstelling.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

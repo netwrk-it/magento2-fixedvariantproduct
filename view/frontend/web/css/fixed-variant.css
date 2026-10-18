@@ -1,0 +1,27 @@
+.netwrk-starter { margin: 0 0 20px; }
+.netwrk-starter__intro { margin-bottom: 15px; }
+.netwrk-starter-group { border: 1px solid #d1d1d1; border-radius: 4px; padding: 12px 15px; margin: 0 0 15px; }
+.netwrk-starter-group.is-complete { border-color: #2e7d32; }
+.netwrk-starter-group.is-over { border-color: #e02b27; }
+.netwrk-starter-group__title { display: flex; justify-content: space-between; gap: 10px; width: 100%; font-weight: 600; padding: 0 4px; }
+.netwrk-starter-group__counter { font-weight: 400; white-space: nowrap; }
+.netwrk-starter-group.is-complete .netwrk-starter-group__counter { color: #2e7d32; font-weight: 600; }
+.netwrk-starter-group__items { list-style: none; margin: 10px 0 0; padding: 0; }
+.netwrk-starter-item { display: flex; align-items: center; gap: 12px; padding: 8px 0; margin: 0; border-top: 1px solid #f0f0f0; }
+.netwrk-starter-item:first-child { border-top: 0; }
+.netwrk-starter-item.is-unavailable { opacity: .5; }
+.netwrk-starter-item__image { width: 64px; height: 64px; object-fit: cover; flex: 0 0 64px; }
+.netwrk-starter-item__info { flex: 1 1 auto; display: flex; flex-direction: column; min-width: 0; }
+.netwrk-starter-item__price { color: #666; font-size: 1.3rem; }
+.netwrk-starter-item__stock { color: #e02b27; font-size: 1.2rem; }
+.netwrk-starter-item__qty { display: flex; align-items: center; gap: 4px; flex: 0 0 auto; }
+.netwrk-starter-item__qty input.qty { width: 54px; text-align: center; }
+.netwrk-starter-step { min-width: 34px; height: 34px; padding: 0; line-height: 1; }
+.netwrk-starter-extra { background: #f7f7f7; border-radius: 4px; padding: 12px 15px; margin: 0 0 15px; }
+.netwrk-starter-extra__note { color: #666; margin: 6px 0 0; }
+.netwrk-starter-extra__groups { margin-top: 12px; }
+.netwrk-starter-extra__groups .netwrk-starter-group { background: #fff; }
+.netwrk-starter__total { display: flex; justify-content: space-between; font-size: 1.6rem; padding: 10px 0; border-top: 1px solid #d1d1d1; }
+.netwrk-starter-group__error { position: relative; }
+.netwrk-starter-group__validator { position: absolute; left: 0; top: 0; width: 1px; height: 1px; padding: 0; border: 0; opacity: 0; pointer-events: none; }
+.netwrk-starter-group__error div.mage-error { margin-top: 8px; color: #e02b27; font-size: 1.2rem; }
